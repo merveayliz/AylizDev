@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayliz.dev | Junior Front-End Developer & UI Designer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;900&family=Plus+Jakarta+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --bg: #050505;
+            --surface: #0f0f0f;
+            --accent: #8a2be2;
+            --accent-light: #00d4ff;
+            --grad: linear-gradient(135deg, #8a2be2 0%, #00d4ff 100%);
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        @keyframes revealLogo {
+            0% { transform: scale(1.2); filter: blur(10px); opacity: 0; }
+            100% { transform: scale(1); filter: blur(0); opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+            position: relative;
+            background: radial-gradient(circle at 50% 50%, #1a0b2e 0%, #050505 100%);
+        }
+
+        .main-logo {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 900;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+            animation: revealLogo 1.5s ease-out;
+        }
+
+        .main-logo span {
+            background: var(--grad);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2rem, 8vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: slideUp 1s ease forwards 0.8s;
+        }
+
+        .hero p {
+            color: var(--text-dim);
+            max-width: 600px;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: slideUp 1s ease forwards 1s;
+        }
+
+        .btn-glow {
+            padding: 15px 40px;
+            background: var(--grad);
+            color: white;
+            text-decoration: none;
+            border-radius: 100px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: 0.4s;
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.3);
+            opacity: 0;
+            animation: slideUp 1s ease forwards 1.2s;
+        }
+
+        .btn-glow:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(0, 212, 255, 0.5);
+            letter-spacing: 2px;
+        }
+
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 50px 5%;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--grad);
+            border-color: transparent;
+        }
+
+        .projects-section { padding: 50px 5%; }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 30px;
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 380px;
+        }
+
+        .card:hover {
+            transform: translateY(-15px) rotate(1deg);
+            border-color: var(--accent-light);
+            background: rgba(255,255,255,0.05);
+        }
+
+        .card-num { font-family: 'Outfit'; font-size: 3rem; opacity: 0.05; position: absolute; top: 10px; right: 20px; }
+        .card h3 { font-family: 'Outfit'; font-size: 1.5rem; margin-bottom: 10px; color: var(--accent-light); }
+        .card p { color: var(--text-dim); font-size: 0.95rem; margin-bottom: 20px; }
+        
+        .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+        .tag { font-size: 0.7rem; background: rgba(138,43,226,0.1); border: 1px solid var(--accent); padding: 3px 10px; border-radius: 5px; color: var(--accent-light); font-weight: 700; }
+
+        .project-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: white;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+
+        .section-title { text-align: center; font-family: 'Outfit'; font-size: 2.5rem; margin: 80px 0 40px; }
+        .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; padding: 0 5%; }
+        
+        .cert-card {
+            background: var(--glass);
+            border-left: 4px solid var(--accent);
+            padding: 20px;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .cert-card:hover { background: rgba(138,43,226,0.1); transform: translateX(10px); }
+
+        .about-section {
+            padding: 100px 10%;
+            background: linear-gradient(180deg, #050505 0%, #0a0a0a 100%);
+            margin-top: 80px;
+        }
+
+        .about-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            text-align: left;
+        }
+
+        .about-image-wrapper {
+            flex-shrink: 0;
+            position: relative;
+            width: 320px;
+            height: 320px;
+        }
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 30px;
+            border: 2px solid var(--border);
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .about-image-wrapper::after {
+            content: '';
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            bottom: -15px;
+            left: -15px;
+            background: var(--grad);
+            border-radius: 35px;
+            z-index: 1;
+            filter: blur(20px);
+            opacity: 0.3;
+        }
+
+        .about-content {
+            flex-grow: 1;
+        }
+
+        .about-content h2 {
+            font-family: 'Outfit';
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 900;
+        }
+
+        .about-content p {
+            font-size: 1.2rem;
+            color: #ccc;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 15px; 
+            max-width: 900px; 
+            margin: 40px auto;
+            padding: 0 5%;
+        }
+        
+        .contact-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 20px 10px; 
+            border-radius: 16px; 
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-card i {
+            width: 24px;
+            height: 24px;
+            color: var(--accent-light);
+            transition: 0.3s;
+        }
+        
+        .contact-card p {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .contact-card:hover {
+            border-color: var(--accent-light);
+            background: rgba(138, 43, 226, 0.1); 
+            transform: translateY(-5px);
+        }
+        
+        .contact-card:hover i {
+            transform: scale(1.1);
+            color: white;
+        }
+
+        footer {
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 992px) {
+            .about-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 40px;
+            }
+            .about-image-wrapper {
+                width: 260px;
+                height: 260px;
+            }
+            .contact-grid { grid-template-columns: repeat(2, 1fr); }
+            .grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 600px) {
+            .grid { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.8rem; }
+            .about-content h2 { font-size: 2.2rem; }
+            .about-content p { font-size: 1.1rem; }
+            .about-image-wrapper {
+                width: 220px;
+                height: 220px;
+            }
+        }
+        
+            @media (max-width: 768px) {
+        .contact-grid {
+           
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 10px;
+            margin: 20px auto;
+        }
+    
+        .contact-card {
+            padding: 15px 8px; 
+            border-radius: 12px;
+        }
+    
+        .contact-card p {
+            font-size: 0.75rem;
+        }
+    
+        .contact-card i {
+            width: 20px; 
+            height: 20px;
+        }
+       }
+
+        .hidden { display: none; } 
+        
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <div class="main-logo">AY<span>LİZ.DEV</span></div>
+        <h1>Fikirden Koda,<br>Dijital Sanat.</h1>
+        <p>Geleceğin teknolojilerini modern tasarım çizgileriyle birleştiriyorum. AI ile güçlendirilmiş, kullanıcı odaklı profesyonel çözümler.</p>
+        <a href="#projects" class="btn-glow">PROJELERİ GÖR</a>
+    </section>
+
+    <div class="filter-container" id="projects">
+        <button class="filter-btn active" onclick="filterProjects('all')">Hepsi</button>
+        <button class="filter-btn" onclick="filterProjects('creative')">Creative Projects</button>
+        <button class="filter-btn" onclick="filterProjects('business')">Business & Portfolio</button>
+        <button class="filter-btn" onclick="filterProjects('webapp')">Web Apps</button>
+    </div>
+
+    <section class="projects-section">
+        <div class="grid" id="projectGrid">
+            
+            <article class="card" data-category="creative">
+                <span class="card-num">01</span>
+                <div>
+                    <div class="tag-row"><span class="tag">HTML/CSS</span><span class="tag">STORYTELLING</span></div>
+                    <h3>The 100 (Ark-OS)</h3>
+                    <p>The 100 dizisinin evreninden ilham alınarak hazırlanan bu proje,dizide geçen önemli mekanları tanıtan bir web deneyimidir.
+                      HTML ve CSS kullanılarak tasarlanan sayfada kullanıcılar,dizideki farklı bölgeleri keşfedebilir ve kısa açıklamalarla
+                      bu dünyayı daha yakından inceleyebilir.</p>
+                </div>
+                <a href="https://merveayliz.github.io/ark-os/" target="_blank" class="project-link">İNCELE <i data-lucide="external-link"></i></a>
+            </article>
+
+
+           <article class="card" data-category="creative">
+                  <span class="card-num">02</span>
+                  <div>
+                     <div class="tag-row"><span class="tag">FIREBASE</span><span class="tag">WEB APP</span></div>
+                       <h3>Ark-OS WEB | The 100 Fan Hub</h3>
+                       <p> The 100 dizisi hayranları için geliştirilen bu web uygulaması,kullanıcıların e-posta ile giriş yapabildiği ve dizinin evrenini
+                           keşfedebildiği bir platformdur. Firebase altyapısı kullanılarak oluşturulan projede hayranlar keşfet sayfasında içerikleri
+                           inceleyebilir ve sohbet odasında diğer kullanıcılarla canlı olarak iletişim kurabilir. Proje halen geliştirme aşamasındadır
+                           ve tasarım üzerinde küçük iyileştirmeler yapılmaya devam etmektedir.</p>
+                    </div>
+                <a href="https://merveayliz.github.io/ark-os-web/" target="_blank" class="project-link">İNCELE <i data-lucide="external-link"></i></a>
+         </article>
+
+            
+            <article class="card" data-category="business">
+                <span class="card-num">03</span>
+                <div>
+                    <div class="tag-row"><span class="tag">UI/UX</span><span class="tag">BRANDING</span></div>
+                    <h3>Ink & Soul Tattoo</h3>
+                  <p>Dövme sanatçıları ve stüdyoları için tasarlanmıştır. Proje, dövme çalışmalarının yüksek kaliteli görsellerle ön plana çıkmasını
+                   sağlayan güçlü bir galeri yapısı ve dikkat çekici tipografi ile tasarlanmıştır. Kullanıcı dostu arayüzü sayesinde ziyaretçiler sanatçının
+                   portfolyosunu inceleyebilir, stilini keşfedebilir ve stüdyo hakkındabilgi edinebilir. Minimal fakat güçlü tasarım diliyle sanatın
+                   atmosferini yansıtan profesyonel bir dijital vitrin sunmayı amaçlar.</p>
+                </div>
+                <a href="https://merveayliz.github.io/tattooStudio/" target="_blank" class="project-link">İNCELE <i data-lucide="external-link"></i></a>
+            </article>
+
+            <article class="card" data-category="business">
+                <span class="card-num">04</span>
+                <div>
+                    <div class="tag-row"><span class="tag">MODERN UI</span><span class="tag">AGENCY</span></div>
+                    <h3>Curly Design Studio</h3>
+                    <p>El işi ürünler, hediyelik eşya ve özel gün konseptli küçük işletmeler için tasarlanmış modern bir web sitesi konseptidir. Ürünleri şık bir
+                       şekilde sergileyen galeri yapısı, marka tanıtımı ve iletişim bölümleri ile işletmelerin dijital ortamda profesyonel bir vitrine sahip
+                       olmasını amaçlar. Farklı işletmelere özel web tasarımları geliştirebildiğimi göstermek için hazırlanmıştır.</p>
+                </div>
+                <a href="https://merveayliz.github.io/Curly-Design-Studio/" target="_blank" class="project-link">İNCELE <i data-lucide="external-link"></i></a>
+            </article>
+
+
+            <article class="card" data-category="business">
+               <span class="card-num">05</span>
+               <div>
+                    <div class="tag-row"><span class="tag">MODERN UI</span><span class="tag">WEBSITE</span></div>
+                    <h3>SoftKey Studio</h3>
+                    <p>Modern bir web sitesi konseptidir. Minimal tasarım anlayışı ve
+                        kullanıcı dostu arayüzüyle ürünlerinizi etkili bir şekilde sergilemenize olanak tanır.
+                    </p>
+                </div>
+               <a href="https://merveayliz.github.io/SoftKey-Studio/" target="_blank" class="project-link">İNCELE <i data-lucide="external-link"></i></a>
+           </article>
+
+
+            <article class="card" data-category="business">
+                <span class="card-num">06</span>
+                <div>
+                    <div class="tag-row"><span class="tag">JS</span><span class="tag">PORTFOLIO 1</span></div>
+                    <h3>Portfolio v1</h3>
+                    <p>Kişisel projeleri ve tasarım çalışmalarını sergilemek amacıyla oluşturulmuş modern bir portfolyo konseptidir.Kişisel markayı ön plana çıkaran, akıcı geçiş efektleri ve mobil uyumlu yapısıyla şık bir tanıtım sayfası.</p>
+                </div>
+                <a href="https://merveayliz.github.io/burcu--portfolio/" target="_blank" class="project-link">İNCELE <i data-lucide="external-link"></i></a>
+            </article>
+
+
+          <article class="card" data-category="business">
+             <span class="card-num">07</span>
+              <div>
+                <div class="tag-row"><span class="tag">HTML/CSS</span><span class="tag">PORTFOLIO 2</span></div>
+               <h3>Portfolio v2</h3>
+                 <p>Kişisel projeleri ve tasarım çalışmalarını sergilemek amacıyla oluşturulmuş modern bir portfolyo konseptidir. Temiz arayüz,
+                    okunabilir tipografi ve mobil uyumlu yapı ile kullanıcı dostu bir deneyim sunmayı hedefler. Proje tasarım denemeleri içeren
+                   bir portfolyo çalışmasıdır.</p>
+             </div>
+             <a href="https://merveayliz.github.io/portfolyo3/" target="_blank" class="project-link">İNCELE <i data-lucide="external-link"></i></a>
+       </article>
+
+       
+            <article class="card" data-category="webapp">
+                <span class="card-num">08</span>
+                <div>
+                    <div class="tag-row"><span class="tag">SaaS</span><span class="tag">DASHBOARD</span></div>
+                    <h3>Business Analytics Panel</h3>
+                    <p>Veri görselleştirme ve iş yönetimi süreçlerini kolaylaştıran, temiz kod yapılı bir yönetim paneli (Dashboard) arayüzü.</p>
+                </div>
+                <a href="https://merveayliz.github.io/Dashboard/" target="_blank" class="project-link">İNCELE <i data-lucide="external-link"></i></a>
+            </article>
+            
+            <article class="card" data-category="webapp">
+                <span class="card-num">09</span>
+                <div>
+                    <div class="tag-row"><span class="tag">FIREBASE</span><span class="tag">WEB APP</span></div>
+                    <h3>NextWatch Cinema</h3>
+                    <p>Film ve dizi takibi yapabileceğiniz, Firebase entegrasyonuyla dinamik içerik sunan kapsamlı bir web uygulaması.
+                        kullnacılar favori yapımlarını kaydedebilir, izleme listeleri oluşturabilir ve güncel içerikleri keşfedebilirler. 
+                        Proje halen geliştirme aşamasındadır tasarım üzerinde küçük iyileştirmeler yapılmaya devam edilmektedir.
+                    </p>
+                </div>
+                <a href="https://merveayliz.github.io/NextWatch/" target="_blank" class="project-link">İNCELE <i data-lucide="external-link"></i></a>
+            </article>
+
+
+               <article class="card" data-category="webapp">
+                    <span class="card-num">10</span>
+                       <div>
+                         <div class="tag-row"><span class="tag">WEB PROJECT</span> <span class="tag">PORTFOLIO</span></div>
+                         <h3>Ruh Durağı</h3>
+                         <p>Ruh Durağı, duygu ve düşünceleri sade bir tasarım içinde sunmayı amaçlayan
+                          kişisel bir web projesidir. Şu anda geliştirme aşamasındadır ve bu link yalnızca
+                          arayüzün nasıl görüneceğini göstermek için hazırlanmış bir önizlemedir.
+                          Gerçek bir platform değildir ve henüz Firebase gibi bir veritabanı veya
+                          dinamik altyapı kullanılmamıştır. </p>
+                        </div>
+                      <a href="https://merveayliz.github.io/ruh_duragi/" target="_blank" class="project-link">İNCELE <i data-lucide="external-link"></i></a>
+                </article>
+            
+        </div>
+    </section>
+
+    <h2 class="section-title">Eğitim & Başarılar</h2>
+    <div class="cert-grid">
+        <div class="cert-card">
+            <small>09.02.2026</small>
+            <h4>BTK Akademi - Web Geliştirme</h4>
+            <p>HTML5 ve Modern Web Standartları eğitimi başarıyla tamamlandı.</p>
+        </div>
+        <div class="cert-card">
+            <small>10.02.2026</small>
+            <h4>Stres Yönetimi & Farkındalık</h4>
+            <p>Profesyonel iş hayatında verimlilik ve odaklanma üzerine yetkinlik belgesi.</p>
+        </div>
+        <div class="cert-card">
+            <small>28.05.2024</small>
+            <h4>İkna Becerileri & İletişim</h4>
+            <p>Müşteri ilişkileri ve proje yönetimi süreçlerinde stratejik iletişim eğitimi.</p>
+        </div>
+    </div>
+ <section class="about-section">
+        <div class="about-container">
+            <div class="about-image-wrapper">
+                <img src="W.jpeg" alt="Merve Ayliz" class="profile-img">
+            </div>
+            <div class="about-content">
+                <h2>Ben Kimim?</h2>
+                <p>Ben <b>Merve Ayliz</b>. Tasarımın estetiğini kodun mantığıyla birleştiren bir <b>Junior Front-End Developer</b> ve <b>UI Tasarımcısıyım</b>. 
+                AI araçlarını bir asistan gibi kullanarak, normalden 10 kat daha hızlı ve hatasız projeler üretiyorum. Web Tasarım öğrencisi olarak başladığım bu yolculukta, her gün kendimi geliştiriyor ve LinkedIn üzerinden toplulukla paylaşıyorum. Sadece kod yazmıyor, yaşayan dijital deneyimler tasarlıyorum.</p>
+            </div>
+        </div>
+    </section>
+    <h2 class="section-title">Bana Ulaşın</h2>
+    <div class="contact-grid">
+        <a href="mailto:merveayliz2301@gmail.com" class="contact-card">
+            <i data-lucide="mail"></i>
+            <p>E-Posta</p>
+        </a>
+        <a href="https://github.com/merveayliz" target="_blank" class="contact-card">
+            <i data-lucide="github"></i>
+            <p>GitHub</p>
+        </a>
+        <a href="https://www.linkedin.com/in/ayliz-azaklı-74579b318/" target="_blank" class="contact-card">
+            <i data-lucide="linkedin"></i>
+            <p>LinkedIn</p>
+        </a>
+        <a href="https://www.instagram.com/ayliz.dev?igsh=dTNvdDQ3MXpia2h3" target="_blank" class="contact-card">
+            <i data-lucide="instagram"></i>
+            <p>Instagram</p>
+        </a>
+    </div>
+
+    <footer>
+        by <b>Ayliz Designer</b> | © 2026 Tutkuyla Kodlandı.
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.card');
+            const btns = document.querySelectorAll('.filter-btn');
+
+            btns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.classList.remove('hidden');
+                    card.style.animation = 'slideUp 0.5s ease forwards';
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
