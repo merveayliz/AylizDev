@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;900&family=Plus+Jakarta+Sans:wght@300;400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
+        
         :root {
             --bg: #050505;
             --surface: #0f0f0f;
@@ -19,7 +20,14 @@
             --text-dim: #a0a0a0;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+
+        
         html { scroll-behavior: smooth; }
         
         body {
@@ -30,6 +38,7 @@
             line-height: 1.5;
         }
 
+        
         @keyframes revealLogo {
             0% { transform: scale(1.2); filter: blur(10px); opacity: 0; }
             100% { transform: scale(1); filter: blur(0); opacity: 1; }
@@ -52,6 +61,7 @@
             background: radial-gradient(circle at 50% 50%, #1a0b2e 0%, #050505 100%);
         }
 
+        
         .main-logo {
             font-family: 'Outfit', sans-serif;
             font-weight: 900;
@@ -61,6 +71,7 @@
             animation: revealLogo 1.5s ease-out;
         }
 
+        
         .main-logo span {
             background: var(--grad);
             -webkit-background-clip: text;
@@ -68,6 +79,7 @@
             -webkit-text-fill-color: transparent;
         }
 
+        
         .hero h1 {
             font-family: 'Outfit', sans-serif;
             font-size: clamp(2rem, 8vw, 4.5rem);
@@ -77,6 +89,7 @@
             animation: slideUp 1s ease forwards 0.8s;
         }
 
+        
         .hero p {
             color: var(--text-dim);
             max-width: 600px;
@@ -86,6 +99,7 @@
             animation: slideUp 1s ease forwards 1s;
         }
 
+        
         .btn-glow {
             padding: 15px 40px;
             background: var(--grad);
@@ -100,6 +114,7 @@
             animation: slideUp 1s ease forwards 1.2s;
         }
 
+        
         .btn-glow:hover {
             transform: scale(1.05);
             box-shadow: 0 0 40px rgba(0, 212, 255, 0.5);
@@ -114,6 +129,7 @@
             flex-wrap: wrap;
         }
 
+        
         .filter-btn {
             background: var(--glass);
             border: 1px solid var(--border);
@@ -139,6 +155,7 @@
             max-width: 1400px;
             margin: 0 auto;
         }
+        
 
         .card {
             background: var(--surface);
@@ -160,12 +177,44 @@
             background: rgba(255,255,255,0.05);
         }
 
-        .card-num { font-family: 'Outfit'; font-size: 3rem; opacity: 0.05; position: absolute; top: 10px; right: 20px; }
-        .card h3 { font-family: 'Outfit'; font-size: 1.5rem; margin-bottom: 10px; color: var(--accent-light); }
-        .card p { color: var(--text-dim); font-size: 0.95rem; margin-bottom: 20px; }
+        .card-num { 
+            font-family: 'Outfit'; 
+            font-size: 3rem; 
+            opacity: 0.05;
+            position: absolute; 
+            top: 10px; 
+            right: 20px; 
+        }
         
-        .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
-        .tag { font-size: 0.7rem; background: rgba(138,43,226,0.1); border: 1px solid var(--accent); padding: 3px 10px; border-radius: 5px; color: var(--accent-light); font-weight: 700; }
+        .card h3 { 
+            font-family: 'Outfit'; 
+            font-size: 1.5rem; 
+            margin-bottom: 10px; 
+            color: var(--accent-light); 
+        }
+        
+        .card p { 
+            color: var(--text-dim); 
+            font-size: 0.95rem; 
+            margin-bottom: 20px; 
+        }
+        
+        .tag-row { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 8px; 
+            margin-bottom: 20px; 
+        }
+        
+        .tag { 
+            font-size: 0.7rem; 
+            background: rgba(138,43,226,0.1); 
+            border: 1px solid var(--accent); 
+            padding: 3px 10px; 
+            border-radius: 5px; 
+            color: var(--accent-light); 
+            font-weight: 700; 
+        }
 
         .project-link {
             display: flex;
@@ -178,8 +227,21 @@
             margin-top: auto;
         }
 
-        .section-title { text-align: center; font-family: 'Outfit'; font-size: 2.5rem; margin: 80px 0 40px; }
-        .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; padding: 0 5%; }
+        .section-title { 
+            text-align: center; 
+            font-family: 'Outfit'; 
+            font-size: 2.5rem;
+            margin: 80px 0 40px; 
+        }
+        
+        .cert-grid { 
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 20px; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 5%; 
+        }
         
         .cert-card {
             background: var(--glass);
@@ -212,6 +274,7 @@
             width: 320px;
             height: 320px;
         }
+        
         .profile-img {
             width: 100%;
             height: 100%;
@@ -363,7 +426,7 @@
         .hidden { display: none; } 
         
     </style>
-</head>
+  </head>
 <body>
 
     <section class="hero">
@@ -510,9 +573,8 @@
                         </div>
                       <a href="https://merveayliz.github.io/ruh_duragi/" target="_blank" class="project-link">İNCELE <i data-lucide="external-link"></i></a>
                 </article>
-            
-        </div>
-    </section>
+             </div>
+       </section>
 
     <h2 class="section-title">Eğitim & Başarılar</h2>
     <div class="cert-grid">
@@ -588,6 +650,5 @@
             });
         }
     </script>
-</body>
-
+  </body>
 </html>
